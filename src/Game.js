@@ -29,11 +29,9 @@ class Game extends Component {
         chance: undefined
       }
     };
-    this.roll = this.roll.bind(this);
-    this.doScore = this.doScore.bind(this);
   }
 
-  roll(evt) {
+  roll = (evt) => {
     // roll dice whose indexes are in reroll
     this.setState(st => ({
       dice: st.dice.map((d, i) =>
@@ -44,8 +42,9 @@ class Game extends Component {
     }));
   }
 
-  toggleLocked(idx) {
+  toggleLocked = (idx) => {
     // toggle whether idx is in locked or not
+    console.log(idx.target)
     this.setState(st => ({
       locked: [
         ...st.locked.slice(0, idx),
@@ -55,7 +54,7 @@ class Game extends Component {
     }));
   }
 
-  doScore(rulename, ruleFn) {
+  doScore = (rulename, ruleFn) => {
     // evaluate this ruleFn with the dice and score this rulename
     this.setState(st => ({
       scores: { ...st.scores, [rulename]: ruleFn(this.state.dice) },
